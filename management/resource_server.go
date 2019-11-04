@@ -43,7 +43,7 @@ type ResourceServer struct {
 	VerificationLocation *string `json:"verificationLocation,omitempty"`
 
 	Options map[string]interface{} `json:"options,omitempty"`
-	
+
 	// Enables the enforcement of the authorization policies.
 	EnforcePolicies *bool `json:"enforce_policies,omitempty"`
 }
@@ -72,6 +72,15 @@ func NewResourceServerManager(m *Management) *ResourceServerManager {
 
 func (r *ResourceServerManager) Create(rs *ResourceServer) (err error) {
 	return r.m.post(r.m.uri("resource-servers"), rs)
+}
+
+func (r *ResourceServerManager) List() (*[]ResourceServer, error) {
+	var rss *[]ResourceServer
+	err := r.m.get(r.m.uri("resource-servers"), &rss)
+	if err != nil {
+		return nil, err
+	}
+	return rss, nil
 }
 
 func (r *ResourceServerManager) Read(id string, opts ...reqOption) (*ResourceServer, error) {

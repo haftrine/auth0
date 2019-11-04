@@ -51,6 +51,8 @@ func TestClientGrant(t *testing.T) {
 		Scope:    []interface{}{"create:resource"},
 	}
 
+	gs := make([]ClientGrant, 0)
+
 	t.Run("Create", func(t *testing.T) {
 		err = m.ClientGrant.Create(g)
 		if err != nil {
@@ -65,6 +67,14 @@ func TestClientGrant(t *testing.T) {
 			t.Fatal(err)
 		}
 		t.Logf("%v\n", g)
+	})
+
+	t.Run("List", func(t *testing.T) {
+		gs, err = m.ClientGrant.List()
+		if err != nil {
+			t.Fatal(err)
+		}
+		t.Logf("%v\n", gs)
 	})
 
 	t.Run("Update", func(t *testing.T) {

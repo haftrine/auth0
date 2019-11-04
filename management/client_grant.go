@@ -37,6 +37,15 @@ func (cg *ClientGrantManager) Create(g *ClientGrant) (err error) {
 	return cg.m.post(cg.m.uri("client-grants"), g)
 }
 
+func (cg *ClientGrantManager) List() (*[]ClientGrant, error) {
+	var gs *[]ClientGrant
+	err := cg.m.get(cg.m.uri("client-grants"), &gs)
+	if err != nil {
+		return nil, err
+	}
+	return gs, nil
+}
+
 func (cg *ClientGrantManager) Read(id string) (*ClientGrant, error) {
 	var gs []*ClientGrant
 	err := cg.m.get(cg.m.uri("client-grants"), &gs)
