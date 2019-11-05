@@ -51,7 +51,7 @@ func TestClientGrant(t *testing.T) {
 		Scope:    []interface{}{"create:resource"},
 	}
 
-	gs := make([]ClientGrant, 0)
+	var gs *[]ClientGrant
 
 	t.Run("Create", func(t *testing.T) {
 		err = m.ClientGrant.Create(g)
