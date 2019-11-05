@@ -12,7 +12,7 @@ import (
 	"strings"
 	"time"
 
-	"auth0/internal/client"
+	"github.com/haftrine/auth0/internal/client"
 )
 
 // Management is an Auth0 management client used to interact with the Auth0
